@@ -5,4 +5,4 @@ Modelo somente para cotacoes
 Gerenciamento da portaria com controle de acesso
 
 # Controle de acesso:
-![](https://github.com/arodri10-br/ControlePatio/blob/main/resource/img/Schema.jpg)
+![](https://github.com/arodri10-br/ControlePatio/blob/main/resources/img/Schema.jpg)
