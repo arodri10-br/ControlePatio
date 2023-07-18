@@ -76,16 +76,16 @@ TODO : Tabela de carregamento / pedidos relacionados, vamos ter que fazer uma an
 ![](https://github.com/arodri10-br/ControlePatio/blob/main/resources/img/MovimentacaoVeiculos.JPG)
 
 # Integrações :
-Provider e Consumer :
-    Cadastro de Address
-    Veiculos
-    Pessoas
-    Pesagem ( considerar que será por API )
-Provider :
-    Movimentação
-Consumer :
-    A definir !
-    Carregamento
-    Pedidos de recepção
-    Pedidos de despacho
+-Provider e Consumer :
+    * Cadastro de Address
+    * Veiculos
+    * Pessoas
+    * Pesagem ( considerar que será por API )
+-Provider :
+    * Movimentação
+-Consumer :
+    * A definir !
+    * Carregamento
+    * Pedidos de recepção
+    * Pedidos de despacho
 
