@@ -1,10 +1,23 @@
-# DRAFT 
-Modelo somente para cotacoes
+# DRAFT (somente para cotacoes)
+
+# Requisitos minimos :
+    Execução On line ( em cloud )
+    Execução Off line ( Local com ou sem internet )
+    Sincronização ( o off line atualiza o cloud quando "voltar a internet", mas com ação de um usuário )
+    Minimo de recursos necessários, pense que este sistema esta em execução a 800 KM de distancia e sem acesso a internet.
+    Sistema operacional Linux
 
 # Controle de Patio
-Gerenciamento da portaria com controle de acesso
+Gerenciamento da portaria com controle de acesso de veiculos.
+Devemos gerenciar, quem esta entrando ou saindo do recinto, bem como toda a operação que ocorreu dentro da planta.
+O Modelo foi pensado em produtos a granel, mas com pequenas mudanças deve funcionar tambem com produtos acabados.
 
 # Modelo de dados :
+Na pasta : https://github.com/arodri10-br/ControlePatio/tree/main/resources/database
+Voce pode encontrar o banco definido com os devidos relacionamentos entre as tabelas e em alguns casos alguns exemplos de dados.
+As colunas que contenham o comentario como no exemplo abaixo, são as que vao utilizar um componente de combo que será apresentado mais abaixo.
+Fique a vontade para incluir mais colunas nas tabelas e/ou criar novas para melhorar a definição.
+![](https://github.com/arodri10-br/ControlePatio/blob/main/resources/img/Comentarios_DG.jpg)
 
 # Controle de acesso:
 Controle de usuários com as respectivas permissões de acesso.
@@ -61,3 +74,18 @@ Os passos para a carga ou descarga, serão sempre os mesmos, a variando somente 
 A Ordem em que são feitos esses passos podem eventualmente variar e serem executados por pessoas com acessos diferentes.
 TODO : Tabela de carregamento / pedidos relacionados, vamos ter que fazer uma análise melhor dos ERP´s que vamos integrar com esse sistema.
 ![](https://github.com/arodri10-br/ControlePatio/blob/main/resources/img/MovimentacaoVeiculos.JPG)
+
+# Integrações :
+Provider e Consumer :
+    Cadastro de Address
+    Veiculos
+    Pessoas
+    Pesagem ( considerar que será por API )
+Provider :
+    Movimentação
+Consumer :
+    A definir !
+    Carregamento
+    Pedidos de recepção
+    Pedidos de despacho
+
