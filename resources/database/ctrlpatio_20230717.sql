@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 16-Jul-2023 às 17:05
+-- Tempo de geração: 16-Jul-2023 às 10:44
 -- Versão do servidor: 10.3.28-MariaDB
 -- versão do PHP: 7.2.24
 
@@ -146,60 +146,6 @@ INSERT INTO `adm_usuario` (`idUsuario`, `nmUsuario`, `senha`, `email`, `fone`, `
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `CadEquipamento`
---
-
-CREATE TABLE `CadEquipamento` (
-  `NumEquipamento` int(8) NOT NULL,
-  `TipoEquipamento` char(10) DEFAULT NULL COMMENT 'DG - TpEquipamento',
-  `Companhia` char(10) DEFAULT NULL,
-  `CodFilial` char(20) DEFAULT NULL,
-  `NumPlaqueta` char(20) DEFAULT NULL,
-  `NumSerie` char(25) DEFAULT NULL,
-  `DescEquipamento` char(60) DEFAULT NULL,
-  `AbookLocalEquip` int(10) DEFAULT NULL,
-  `DetLocalEquipamento` char(50) DEFAULT NULL,
-  `DataAquisicao` date DEFAULT NULL,
-  `StatusEquipamento` char(1) DEFAULT NULL,
-  `DataStatus` date DEFAULT NULL,
-  `DataBaixa` date DEFAULT NULL,
-  `DataUltRevisao` date DEFAULT NULL,
-  `Fabricante` char(10) DEFAULT NULL COMMENT 'DG - EquipFab',
-  `Modelo` char(20) DEFAULT NULL,
-  `dtCriacao` date DEFAULT NULL,
-  `dtAtualizacao` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `CadEquipamentoManPrev`
---
-
-CREATE TABLE `CadEquipamentoManPrev` (
-  `NumEquipamento` int(8) NOT NULL,
-  `CodServ` char(10) NOT NULL COMMENT 'DG - CodServico',
-  `StatusServ` char(1) DEFAULT NULL,
-  `DataStatus` date DEFAULT NULL,
-  `TipoServico` char(2) DEFAULT NULL COMMENT 'DG - TpServico',
-  `DataUltRevisao` date DEFAULT NULL,
-  `DataProxRevisao` date DEFAULT NULL,
-  `NumOS` int(8) DEFAULT NULL,
-  `TipoOS` char(3) DEFAULT NULL COMMENT 'DG - TpOrdemServ',
-  `ctrlTempo` char(1) DEFAULT NULL COMMENT 'DG - ctrlTempo',
-  `UMctrlTempo` char(3) DEFAULT NULL,
-  `NumTempo` int(8) DEFAULT NULL,
-  `ctrlUso` char(1) DEFAULT NULL,
-  `UMctrlUso` char(3) DEFAULT NULL,
-  `NumUso` int(8) DEFAULT NULL,
-  `usuario` char(20) DEFAULT NULL,
-  `dtCriacao` date DEFAULT NULL,
-  `dtAtualizacao` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Estrutura da tabela `CadItem`
 --
 
@@ -227,30 +173,6 @@ CREATE TABLE `CadItem` (
 INSERT INTO `CadItem` (`idItem`, `codItem`, `descItem`, `GrupoItem`, `TipoEmb`, `UMEstoque`, `UMPreco`, `StatusItem`, `DataStatus`, `CodBolsa`, `CodItemBolsa`, `usuario`, `dtCriacao`, `dtAtualizacao`) VALUES
 (1, 'SOJA', 'SOJA EM GRÃOS', 'SOJA', 'GRA', 'KG', 'SC', 'A', '2023-07-16', 'CBOT', 'SY', 'admin', '2023-07-16', '2023-07-16'),
 (2, 'MILHO', 'MILHO EM GRÃOS', 'MILHO', 'GRA', 'KG', 'SC', 'A', '2023-07-16', 'CBOT', 'ZC', 'admin', '2023-07-16', '2023-07-16');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `CadItemUMConv`
---
-
-CREATE TABLE `CadItemUMConv` (
-  `idItem` int(10) NOT NULL,
-  `UM_DE` char(3) NOT NULL COMMENT 'DG - Unidade de Medida',
-  `UM_PARA` char(3) NOT NULL COMMENT 'DG - Unidade de Medida',
-  `FATOR` double DEFAULT NULL,
-  `usuario` char(20) DEFAULT NULL,
-  `dtCriacao` date DEFAULT NULL,
-  `dtAtualizacao` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Extraindo dados da tabela `CadItemUMConv`
---
-
-INSERT INTO `CadItemUMConv` (`idItem`, `UM_DE`, `UM_PARA`, `FATOR`, `usuario`, `dtCriacao`, `dtAtualizacao`) VALUES
-(1, 'SC', 'KG', 60, 'admin', '2023-07-16', '2023-07-16'),
-(2, 'SC', 'KG', 60, 'admin', '2023-07-16', '2023-07-16');
 
 -- --------------------------------------------------------
 
@@ -585,27 +507,11 @@ INSERT INTO `DadosGerais` (`Atributo`, `Chave`, `Descricao`, `flag01`, `flag02`,
 ('ABTipo', 'Web', 'Endereço Web', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '2023-07-16', '2023-07-16'),
 ('Ativo/Inativo', 'A', 'Ativo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '2023-07-16', '2023-07-16'),
 ('Ativo/Inativo', 'I', 'Inativo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '2023-07-16', '2023-07-16'),
-('CodServico', 'AFERICAO', 'Aferição', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '2023-07-16', '2023-07-16'),
-('CodServico', 'LIMPEZA', 'Limpeza', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '2023-07-16', '2023-07-16'),
-('ctrlTempo', 'A', 'Anos', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '2023-07-16', '2023-07-16'),
-('ctrlTempo', 'D', 'Dias', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ' admin', '2023-07-16', '2023-07-16'),
-('ctrlTempo', 'H', 'Horas', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '2023-07-16', '2023-07-16'),
-('ctrlTempo', 'M', 'Meses', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '2023-07-16', '2023-07-16'),
-('EquipFab', 'FILIZOLA', 'Filizola', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '2023-07-16', '2023-07-16'),
-('EquipFab', 'TOLEDO', 'Toledo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '2023-07-16', '2023-07-16'),
 ('TPDocEst', 'IE', 'IE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '2023-07-16', '2023-07-16'),
 ('TPDocEst', 'RG', 'RG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '2023-07-16', '2023-07-16'),
 ('TPDocFed', 'CNPJ', 'CNPJ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '2023-07-16', '2023-07-16'),
 ('TPDocFed', 'CPF', 'CPF', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '2023-07-16', '2023-07-16'),
 ('TPDocMun', 'Insc.Mun.', 'Insc.Mun.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '2023-07-16', '2023-07-16'),
-('TpEquipamento', 'ANA_HUM', 'Analisador de Umidade', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '2023-07-16', '2023-07-16'),
-('TpEquipamento', 'BAL_CAM', 'Balança Caminhão', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '2023-07-16', '2023-07-16'),
-('TpEquipamento', 'BAL_FLU', 'Balança Fluxo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '2023-07-16', '2023-07-16'),
-('TpEquipamento', 'TOTEM', 'Totem Entrada', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '2023-07-16', '2023-07-16'),
-('TpServico', 'ANA_HUM', 'Analisador de Umidade', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '2023-07-16', '2023-07-16'),
-('TpServico', 'BAL_CAM', 'Balança Caminhão', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '2023-07-16', '2023-07-16'),
-('TpServico', 'BAL_FLU', 'Balança Fluxo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '2023-07-16', '2023-07-16'),
-('TpServico', 'TOTEM', 'Totem Entrada', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '2023-07-16', '2023-07-16'),
 ('UF-Estados', 'AC', 'Acre', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '2023-07-16', '2023-07-16'),
 ('UF-Estados', 'AL', 'Alagoas', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '27', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '2023-07-16', '2023-07-16'),
 ('UF-Estados', 'AM', 'Amazonas', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '13', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '2023-07-16', '2023-07-16'),
@@ -685,147 +591,6 @@ INSERT INTO `Filial` (`CodFilial`, `DescFilial`, `Companhia`, `Abook`, `DtInicio
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `MovtoQualidade`
---
-
-CREATE TABLE `MovtoQualidade` (
-  `Companhia` char(10) NOT NULL,
-  `TipoOperacao` char(10) NOT NULL,
-  `NumDoc` int(10) NOT NULL,
-  `NumAmostra` decimal(6,3) NOT NULL,
-  `AbookTeste` int(10) DEFAULT NULL,
-  `usrTeste` char(20) DEFAULT NULL,
-  `AplicacaoTeste` char(1) DEFAULT NULL COMMENT 'DG - Origem/Destino',
-  `CodFilial` char(20) DEFAULT NULL,
-  `CodTeste` char(25) NOT NULL,
-  `ValorTeste` char(20) DEFAULT NULL,
-  `ValMinimo` char(20) DEFAULT NULL,
-  `ValMaximo` char(20) DEFAULT NULL,
-  `ValPreferido` char(20) DEFAULT NULL,
-  `StatusTeste` char(1) DEFAULT NULL COMMENT 'DG - Status Teste Aprovado, Reprovado, etc',
-  `DataTeste` date DEFAULT NULL,
-  `Quantidade` decimal(15,3) DEFAULT NULL,
-  `QtdDesconto` decimal(15,3) DEFAULT NULL,
-  `QtdBonificacao` decimal(15,3) DEFAULT NULL,
-  `FlagStatus` char(1) DEFAULT NULL,
-  `DataFlag` date DEFAULT NULL,
-  `usuario` char(20) DEFAULT NULL,
-  `dtCriacao` date DEFAULT NULL,
-  `dtAtualizacao` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `MovtoVeiculo`
---
-
-CREATE TABLE `MovtoVeiculo` (
-  `Companhia` char(10) NOT NULL,
-  `TipoOperacao` char(10) NOT NULL,
-  `NumDoc` int(10) NOT NULL,
-  `CodFilial` char(20) DEFAULT NULL,
-  `RecepDesp` char(1) DEFAULT NULL,
-  `LocalEstoque` char(20) DEFAULT NULL,
-  `PesoProgramado` decimal(15,3) DEFAULT NULL,
-  `PesoAferido` decimal(15,3) DEFAULT NULL,
-  `PrimeiraPesagem` decimal(15,3) DEFAULT NULL,
-  `SegundaPesagem` decimal(15,3) DEFAULT NULL,
-  `UMPesagem` char(3) DEFAULT NULL,
-  `DataCriacao` date DEFAULT NULL,
-  `DataPrimPesagem` date DEFAULT NULL,
-  `DataSegPesagem` date DEFAULT NULL,
-  `IdBalanca` char(20) DEFAULT NULL,
-  `PlacaCavalo` char(12) DEFAULT NULL,
-  `AbookMotorista` int(10) DEFAULT NULL,
-  `AbookTransportadora` int(10) DEFAULT NULL,
-  `usrPrimPesagem` char(20) DEFAULT NULL,
-  `usrSegPesagem` char(20) DEFAULT NULL,
-  `usrCriacaoFicha` char(20) DEFAULT NULL,
-  `statusInterface` char(1) DEFAULT NULL,
-  `Status` char(1) DEFAULT NULL,
-  `DataStatus` date DEFAULT NULL,
-  `usuario` char(20) DEFAULT NULL,
-  `dtCriacao` date DEFAULT NULL,
-  `dtAtualizacao` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `MovtoVeiculoAcoplados`
---
-
-CREATE TABLE `MovtoVeiculoAcoplados` (
-  `Companhia` char(10) NOT NULL,
-  `TipoOperacao` char(10) NOT NULL,
-  `NumDoc` int(10) NOT NULL,
-  `SeqVeicAcoplado` int(3) NOT NULL,
-  `PlacaAcoplado` char(12) DEFAULT NULL,
-  `Status` char(1) DEFAULT NULL,
-  `DataStatus` date DEFAULT NULL,
-  `usuario` char(20) DEFAULT NULL,
-  `dtCriacao` date DEFAULT NULL,
-  `dtAtualizacao` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `MovtoVeiculoDocFiscalDT`
---
-
-CREATE TABLE `MovtoVeiculoDocFiscalDT` (
-  `Companhia` char(10) NOT NULL,
-  `TipoOperacao` char(10) NOT NULL,
-  `NumDoc` int(12) NOT NULL,
-  `SecDocFiscal` int(3) NOT NULL,
-  `LinDocFiscal` int(3) NOT NULL,
-  `idItem` int(8) DEFAULT NULL,
-  `LocalEstoque` char(20) DEFAULT NULL,
-  `Lote` char(30) DEFAULT NULL,
-  `Descricao` char(30) DEFAULT NULL,
-  `UMEstoque` char(3) DEFAULT NULL,
-  `Quantidade` decimal(15,3) DEFAULT NULL,
-  `UMPreco` char(3) DEFAULT NULL,
-  `Preco` decimal(15,7) DEFAULT NULL,
-  `Valor` decimal(15,2) DEFAULT NULL,
-  `CFOP` char(4) DEFAULT NULL,
-  `Status` char(1) DEFAULT NULL,
-  `DataStatus` date DEFAULT NULL,
-  `usuario` char(20) DEFAULT NULL,
-  `dtCriacao` date DEFAULT NULL,
-  `dtAtualizacao` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `MovtoVeiculoDocFiscalHD`
---
-
-CREATE TABLE `MovtoVeiculoDocFiscalHD` (
-  `Companhia` char(10) NOT NULL,
-  `TipoOperacao` char(10) NOT NULL,
-  `NumDoc` int(12) NOT NULL,
-  `SeqDocFiscal` int(3) NOT NULL,
-  `DoctoFiscal` char(20) DEFAULT NULL,
-  `DoctoFiscalAcessKey` varchar(50) DEFAULT NULL,
-  `DoctoFiscalTipo` char(10) DEFAULT NULL,
-  `DoctoFiscalEmissao` date DEFAULT NULL,
-  `DoctoFiscalProtocolo` varchar(20) DEFAULT NULL,
-  `DoctoFiscalSerie` char(10) DEFAULT NULL,
-  `AbookEmissor` int(10) DEFAULT NULL,
-  `Status` char(1) DEFAULT NULL,
-  `DataStatus` date DEFAULT NULL,
-  `usuario` char(20) DEFAULT NULL,
-  `dtCriacao` date DEFAULT NULL,
-  `dtAtualizacao` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Estrutura da tabela `SetupDadosGerais`
 --
 
@@ -879,13 +644,7 @@ INSERT INTO `SetupDadosGerais` (`Atributo`, `chave_tamanho`, `chave_tipo`, `chav
 ('TPDocFed', 10, 'Caracter Mai/Min', 'S', 'Tipo Doc Federal', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '2023-07-16', '2023-07-16'),
 ('TPDocEst', 10, 'Caracter Mai/Min', 'S', 'Tipo Documento Estadual', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '2023-07-16', '2023-07-16'),
 ('TPDocMun', 10, 'Caracter Mai/Min', 'S', 'Tipo Documento Municipal', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '2023-07-16', '2023-07-16'),
-('UF-Estados', 2, 'Caracter Mai/Min', 'S', 'Estados - UF', NULL, NULL, NULL, NULL, NULL, 'Cod.IBGE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '2023-07-16', '2023-07-16'),
-('TpEquipamento', 10, 'Caracter Mai/Min', 'S', 'Tipo Equipamento', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '2023-07-15', '2023-07-15'),
-('EquipFab', 10, 'Caracter Mai/Min', 'S', 'Fabricante', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '2023-07-15', '2023-07-15'),
-('CodServico', 10, 'Caracter Mai/Min', 'S', 'Cod Serv', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '2023-07-15', '2023-07-15'),
-('TpServico', 10, 'Caracter Mai/Min', 'S', 'Tipo Serv.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '2023-07-15', '2023-07-15'),
-('TpOrdemServ', 10, 'Caracter Mai/Min', 'S', 'Tipo Ordem', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '2023-07-15', '2023-07-15'),
-('ctrlTempo', 1, 'Caracter Mai/Min', 'S', 'Controle', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '2023-07-15', '2023-07-15');
+('UF-Estados', 2, 'Caracter Mai/Min', 'S', 'Estados - UF', NULL, NULL, NULL, NULL, NULL, 'Cod.IBGE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '2023-07-16', '2023-07-16');
 
 --
 -- Índices para tabelas despejadas
@@ -924,31 +683,10 @@ ALTER TABLE `adm_usuario`
   ADD PRIMARY KEY (`idUsuario`);
 
 --
--- Índices para tabela `CadEquipamento`
---
-ALTER TABLE `CadEquipamento`
-  ADD PRIMARY KEY (`NumEquipamento`),
-  ADD KEY `AbookLocalEquip` (`AbookLocalEquip`),
-  ADD KEY `CodFilial` (`CodFilial`),
-  ADD KEY `Companhia` (`Companhia`);
-
---
--- Índices para tabela `CadEquipamentoManPrev`
---
-ALTER TABLE `CadEquipamentoManPrev`
-  ADD PRIMARY KEY (`NumEquipamento`,`CodServ`) USING BTREE;
-
---
 -- Índices para tabela `CadItem`
 --
 ALTER TABLE `CadItem`
   ADD PRIMARY KEY (`idItem`);
-
---
--- Índices para tabela `CadItemUMConv`
---
-ALTER TABLE `CadItemUMConv`
-  ADD PRIMARY KEY (`idItem`,`UM_DE`,`UM_PARA`) USING BTREE;
 
 --
 -- Índices para tabela `CadPessoaCEP`
@@ -1029,43 +767,6 @@ ALTER TABLE `Filial`
   ADD KEY `Companhia` (`Companhia`);
 
 --
--- Índices para tabela `MovtoQualidade`
---
-ALTER TABLE `MovtoQualidade`
-  ADD PRIMARY KEY (`Companhia`,`TipoOperacao`,`NumDoc`,`NumAmostra`,`CodTeste`) USING BTREE;
-
---
--- Índices para tabela `MovtoVeiculo`
---
-ALTER TABLE `MovtoVeiculo`
-  ADD PRIMARY KEY (`Companhia`,`TipoOperacao`,`NumDoc`) USING BTREE,
-  ADD KEY `AbookMotorista` (`AbookMotorista`),
-  ADD KEY `AbookTransportadora` (`AbookTransportadora`),
-  ADD KEY `CodFilial` (`CodFilial`),
-  ADD KEY `PlacaCavalo` (`PlacaCavalo`);
-
---
--- Índices para tabela `MovtoVeiculoAcoplados`
---
-ALTER TABLE `MovtoVeiculoAcoplados`
-  ADD PRIMARY KEY (`Companhia`,`TipoOperacao`,`NumDoc`,`SeqVeicAcoplado`) USING BTREE,
-  ADD KEY `PlacaAcoplado` (`PlacaAcoplado`);
-
---
--- Índices para tabela `MovtoVeiculoDocFiscalDT`
---
-ALTER TABLE `MovtoVeiculoDocFiscalDT`
-  ADD PRIMARY KEY (`Companhia`,`TipoOperacao`,`NumDoc`,`SecDocFiscal`,`LinDocFiscal`) USING BTREE,
-  ADD KEY `idItem` (`idItem`);
-
---
--- Índices para tabela `MovtoVeiculoDocFiscalHD`
---
-ALTER TABLE `MovtoVeiculoDocFiscalHD`
-  ADD PRIMARY KEY (`Companhia`,`TipoOperacao`,`NumDoc`,`SeqDocFiscal`) USING BTREE,
-  ADD KEY `AbookEmissor` (`AbookEmissor`);
-
---
 -- Índices para tabela `SetupDadosGerais`
 --
 ALTER TABLE `SetupDadosGerais`
@@ -1104,26 +805,6 @@ ALTER TABLE `adm_perfilprocesso`
 ALTER TABLE `adm_user_perfil`
   ADD CONSTRAINT `adm_user_perfil_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `adm_usuario` (`idUsuario`),
   ADD CONSTRAINT `adm_user_perfil_ibfk_2` FOREIGN KEY (`idPerfil`) REFERENCES `adm_perfil` (`idPerfil`);
-
---
--- Limitadores para a tabela `CadEquipamento`
---
-ALTER TABLE `CadEquipamento`
-  ADD CONSTRAINT `CadEquipamento_ibfk_1` FOREIGN KEY (`AbookLocalEquip`) REFERENCES `CadPessoaMaster` (`Abook`),
-  ADD CONSTRAINT `CadEquipamento_ibfk_2` FOREIGN KEY (`CodFilial`) REFERENCES `Filial` (`CodFilial`),
-  ADD CONSTRAINT `CadEquipamento_ibfk_3` FOREIGN KEY (`Companhia`) REFERENCES `Companhia` (`Companhia`);
-
---
--- Limitadores para a tabela `CadEquipamentoManPrev`
---
-ALTER TABLE `CadEquipamentoManPrev`
-  ADD CONSTRAINT `CadEquipamentoManPrev_ibfk_1` FOREIGN KEY (`NumEquipamento`) REFERENCES `CadEquipamento` (`NumEquipamento`);
-
---
--- Limitadores para a tabela `CadItemUMConv`
---
-ALTER TABLE `CadItemUMConv`
-  ADD CONSTRAINT `CadItemUMConv_ibfk_1` FOREIGN KEY (`idItem`) REFERENCES `CadItem` (`idItem`);
 
 --
 -- Limitadores para a tabela `CadPessoaContato`
@@ -1174,43 +855,6 @@ ALTER TABLE `DadosGerais`
 ALTER TABLE `Filial`
   ADD CONSTRAINT `Filial_ibfk_1` FOREIGN KEY (`Abook`) REFERENCES `CadPessoaMaster` (`Abook`),
   ADD CONSTRAINT `Filial_ibfk_2` FOREIGN KEY (`Companhia`) REFERENCES `Companhia` (`Companhia`);
-
---
--- Limitadores para a tabela `MovtoQualidade`
---
-ALTER TABLE `MovtoQualidade`
-  ADD CONSTRAINT `MovtoQualidade_ibfk_1` FOREIGN KEY (`Companhia`,`TipoOperacao`,`NumDoc`) REFERENCES `MovtoVeiculo` (`Companhia`, `TipoOperacao`, `NumDoc`);
-
---
--- Limitadores para a tabela `MovtoVeiculo`
---
-ALTER TABLE `MovtoVeiculo`
-  ADD CONSTRAINT `MovtoVeiculo_ibfk_1` FOREIGN KEY (`AbookMotorista`) REFERENCES `CadPessoaMaster` (`Abook`),
-  ADD CONSTRAINT `MovtoVeiculo_ibfk_2` FOREIGN KEY (`AbookTransportadora`) REFERENCES `CadPessoaMaster` (`Abook`),
-  ADD CONSTRAINT `MovtoVeiculo_ibfk_3` FOREIGN KEY (`CodFilial`) REFERENCES `Filial` (`CodFilial`),
-  ADD CONSTRAINT `MovtoVeiculo_ibfk_4` FOREIGN KEY (`Companhia`) REFERENCES `Companhia` (`Companhia`),
-  ADD CONSTRAINT `MovtoVeiculo_ibfk_5` FOREIGN KEY (`PlacaCavalo`) REFERENCES `CadTipoVeiculo` (`TipoVeiculo`);
-
---
--- Limitadores para a tabela `MovtoVeiculoAcoplados`
---
-ALTER TABLE `MovtoVeiculoAcoplados`
-  ADD CONSTRAINT `MovtoVeiculoAcoplados_ibfk_1` FOREIGN KEY (`PlacaAcoplado`) REFERENCES `CadVeiculo` (`VeicPlaca`),
-  ADD CONSTRAINT `MovtoVeiculoAcoplados_ibfk_2` FOREIGN KEY (`Companhia`,`TipoOperacao`,`NumDoc`) REFERENCES `MovtoVeiculo` (`Companhia`, `TipoOperacao`, `NumDoc`);
-
---
--- Limitadores para a tabela `MovtoVeiculoDocFiscalDT`
---
-ALTER TABLE `MovtoVeiculoDocFiscalDT`
-  ADD CONSTRAINT `MovtoVeiculoDocFiscalDT_ibfk_1` FOREIGN KEY (`Companhia`,`TipoOperacao`,`NumDoc`,`SecDocFiscal`) REFERENCES `MovtoVeiculoDocFiscalHD` (`Companhia`, `TipoOperacao`, `NumDoc`, `SeqDocFiscal`),
-  ADD CONSTRAINT `MovtoVeiculoDocFiscalDT_ibfk_2` FOREIGN KEY (`idItem`) REFERENCES `CadItem` (`idItem`);
-
---
--- Limitadores para a tabela `MovtoVeiculoDocFiscalHD`
---
-ALTER TABLE `MovtoVeiculoDocFiscalHD`
-  ADD CONSTRAINT `MovtoVeiculoDocFiscalHD_ibfk_1` FOREIGN KEY (`AbookEmissor`) REFERENCES `CadPessoaMaster` (`Abook`),
-  ADD CONSTRAINT `MovtoVeiculoDocFiscalHD_ibfk_2` FOREIGN KEY (`Companhia`,`TipoOperacao`,`NumDoc`) REFERENCES `MovtoVeiculo` (`Companhia`, `TipoOperacao`, `NumDoc`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
